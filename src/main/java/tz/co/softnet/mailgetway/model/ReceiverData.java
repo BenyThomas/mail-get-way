@@ -1,13 +1,13 @@
 package tz.co.softnet.mailgetway.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import java.io.File;
 
 public class ReceiverData {
     private String emailAddress;
     private String subject;
     private String body;
-    private File attachment;
-
     public String getEmailAddress() {
         return emailAddress;
     }
@@ -20,7 +20,5 @@ public class ReceiverData {
         return body;
     }
 
-    public File getAttachment() {
-        return attachment;
-    }
+
 }

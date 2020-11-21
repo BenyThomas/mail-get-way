@@ -3,6 +3,7 @@ package tz.co.softnet.mailgetway.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.builders.ResponseMessageBuilder;
@@ -37,7 +38,7 @@ public class MailGetWayConfig {
                 "1.0",
                 "API Terms of Service URL",
                 new Contact("SoftNet Technologies ltd", "www.softnet.co.tz", "bthomas@softnet.co.tz"),
-                "API Licensed Under softnet",
+                "API Licensed Under softNet",
                 "www.softnet.co.tz",
                 Collections.emptyList()
         );
@@ -47,5 +48,11 @@ public class MailGetWayConfig {
         responseMessages.add(new ResponseMessageBuilder().code(500).message("Server has crashed!!").responseModel(new ModelRef("Error")).build());
         responseMessages.add(new ResponseMessageBuilder().code(403).message("You shall not pass!!").build());
         return responseMessages;
+    }
+    @Bean(name = "multipartResolver")
+    public CommonsMultipartResolver multipartResolver() {
+        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+        multipartResolver.setMaxUploadSize(10000000);
+        return multipartResolver;
     }
 }

@@ -1,5 +1,7 @@
 package tz.co.softnet.mailgetway.entity;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.persistence.*;
 import java.io.File;
 @Entity
@@ -14,15 +16,13 @@ public class ReceiverEntity {
     private String subject;
     @Column(name = "email_body")
     private String emailBody;
-    @Column(name = "attachment")
-    private File attachment;
+
     public ReceiverEntity(){}
 
-    public ReceiverEntity(String emailAddress,String subject, String body, File attachment) {
+    public ReceiverEntity(String emailAddress,String subject, String body) {
         this.emailAddress=emailAddress;
         this.subject =subject;
         this.emailBody = body;
-        this.attachment = attachment;
     }
 
     public Long getId() {
@@ -49,13 +49,6 @@ public class ReceiverEntity {
         this.emailBody = emailBody;
     }
 
-    public File getAttachment() {
-        return attachment;
-    }
-
-    public void setAttachment(File attachment) {
-        this.attachment = attachment;
-    }
 
     public String getEmailAddress() {
         return emailAddress;
@@ -64,4 +57,6 @@ public class ReceiverEntity {
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
     }
+
+
 }

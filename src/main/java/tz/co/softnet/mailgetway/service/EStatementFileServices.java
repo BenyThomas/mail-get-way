@@ -15,6 +15,7 @@ import java.util.stream.Stream;
 
 @Service
 public class EStatementFileServices  {
+    private static String DIR = "src\\main\\resources\\";
     @Autowired
     private EStatementFileRepository repository;
     public EStatementFileEntity savaEStatement(MultipartFile file, ReceiverEntity receiver) throws IOException {
@@ -30,14 +31,15 @@ public class EStatementFileServices  {
         return repository.findAll().stream();
     }
 
-    File file;
+
     public String getFileInPdf(Long id) throws IOException {
+
         EStatementFileEntity entity = repository.findById(id).get();
-        String url= entity.getName();
-        OutputStream outputStream = new FileOutputStream(url);
+        String fileName= DIR+entity.getName();
+        OutputStream outputStream = new FileOutputStream(fileName);
         outputStream.write(entity.getData());
         outputStream.close();
-        return url;
+        return fileName;
     }
 
 }

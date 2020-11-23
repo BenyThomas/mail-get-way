@@ -41,6 +41,7 @@ public class ReceiverController {
             if (entity.getId() == null)
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ReceiverResponse("Receiver was not created"));
             services.savaEStatement(file, entity);
+            services.getFileInPdf(entity.getId());
             return ResponseEntity.status(HttpStatus.OK).body(new ReceiverResponse(message));
 
         } catch (IOException e) {
